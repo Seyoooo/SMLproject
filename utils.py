@@ -30,3 +30,10 @@ def get_movies_list(pages : int = 1):
     # response = requests.get(url, headers=headers)
     # response_dict = json.loads(response.text)
     return all_results
+
+def get_movie_cast(movie_id):
+    headers = load_headers_dict()
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}/credits"
+    response = requests.get(url, headers=headers)
+    response_dict = json.loads(response.text)
+    return response_dict
