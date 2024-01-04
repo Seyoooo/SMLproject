@@ -31,6 +31,24 @@ def get_movies_list(pages : int = 1):
     # response_dict = json.loads(response.text)
     return all_results
 
+def get_keywords_related_films_average_score(movie_id):
+    headers = load_headers_dict()
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}/similar?language=en-US&page=1&sort_by=popularity.desc"
+    response = requests.get(url, headers=headers)
+
+    avg_revenue = list()
+    for film in response.json()['results']: 
+        movie_id = film['id']
+        movie_details = get_movie_details(movie_id)
+        revenue = movie_details['revenue']
+        avg_revenue.append(revenue)
+
+    if len(avg_revenue) > 0:
+        return sum(avg_revenue) / len(avg_revenue)
+    else:
+        return 0
+    
+
 def get_movie_cast(movie_id):
     headers = load_headers_dict()
     url = f"https://api.themoviedb.org/3/movie/{movie_id}/credits"
