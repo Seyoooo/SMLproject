@@ -19,6 +19,7 @@ def get_movies_list(pages : int = 1):
     headers = load_headers_dict()
     all_results = []
     for i in range(1, pages+1):
+        print(f'Downloading page {i} ------')
         url = f"https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=revenue.desc&page={i}"
         response = requests.get(url, headers=headers)
         response_dict = json.loads(response.text)
