@@ -15,21 +15,31 @@ def get_movie_details(movie_id):
     response_dict = json.loads(response.text)
     return response_dict
 
-def get_movies_list(pages : int = 1, first : int = 0):
+def get_movies_list(lte_rd : str, gte_rd : str, pages : int = 1, first : int = 0):
     headers = load_headers_dict()
     all_results = []
+    
+    # Check that the range of pages doesn't reach the max number of the request
+    url = f"https://api.themoviedb.org/3/discover/movie?page=1&primary_release_date.gte={gte_rd}&primary_release_date.lte={lte_rd}&include_adult=false&include_video=false&language=en-US&sort_by=revenue.desc"
+    tt_pages = requests.get(url, headers=headers).json()['total_pages']
+    if tt_pages > 500:
+        print('---------')
+        print('/!\ Number of pages greater than 500!! All films will not be accessible.')
+        print(f'Number of pages : {tt_pages}')
+        print('---------')
+        print()
+    if first + pages > tt_pages:
+        raise ValueError(f'The request does not have enough pages for this range. Number of page : {tt_pages}.')
+
+    # Fetch all pages
     for i in range(1+first, first+pages+1):
         print(f'Downloading page {i} ------')
-        url = f"https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=revenue.desc&page={i}"
+        url = f"https://api.themoviedb.org/3/discover/movie?page={i}&primary_release_date.gte={gte_rd}&primary_release_date.lte={lte_rd}&include_adult=false&include_video=false&language=en-US&sort_by=revenue.desc"
         response = requests.get(url, headers=headers)
         response_dict = json.loads(response.text)
         results = response_dict['results']
         all_results.extend(results)
-        # yield response_dict
-    # # url = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc"
-    # url = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=revenue.desc"
-    # response = requests.get(url, headers=headers)
-    # response_dict = json.loads(response.text)
+
     return all_results
 
 def get_keywords_related_films_average_score(movie_id):
