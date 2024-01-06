@@ -6,7 +6,7 @@ import hopsworks
 def g():
     
     nb_pages = 20
-    first_page = 0
+    first_page = 20
 
     lte_release_date = '2012-12-31'
     gte_release_date = '2012-01-01'
