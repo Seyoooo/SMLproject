@@ -8,8 +8,8 @@ def g():
     nb_pages = 20
     first_page = 0
 
-    lte_release_date = '2002-12-31'
-    gte_release_date = '2002-01-01'
+    lte_release_date = '2001-12-31'
+    gte_release_date = '2001-01-01'
 
     print(f'Fetching {nb_pages} pages beggining at page {first_page}, form {gte_release_date} to {lte_release_date}.')
     print('------')
