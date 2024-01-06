@@ -2,6 +2,10 @@ import pickle
 import requests
 import json
 
+def get_api_key(): 
+    with open('hopsworks_api_key.txt', 'r') as f:
+        key_text = f.read()
+    return key_text
 
 def load_headers_dict():
     with open('headers.pkl', 'rb') as f:
