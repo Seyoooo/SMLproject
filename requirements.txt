@@ -1,8 +1,6 @@
 hopsworks
 numpy
 pandas
-sklearn
+scikit-learn
 matplotlib
-pickle
 requests
-json
