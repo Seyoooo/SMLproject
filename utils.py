@@ -1,12 +1,13 @@
 import pickle
 import requests
 import json
-
+import numpy as np
 
 def load_headers_dict():
     with open('headers.pkl', 'rb') as f:
         headers_loaded = pickle.load(f)
     return headers_loaded
+
 
 def get_movie_details(movie_id): 
     headers = load_headers_dict()
@@ -14,6 +15,7 @@ def get_movie_details(movie_id):
     response = requests.get(url, headers=headers)
     response_dict = json.loads(response.text)
     return response_dict
+
 
 def get_movies_list(lte_rd : str, gte_rd : str, pages : int = 1, first : int = 0):
     headers = load_headers_dict()
@@ -41,6 +43,7 @@ def get_movies_list(lte_rd : str, gte_rd : str, pages : int = 1, first : int = 0
         all_results.extend(results)
 
     return all_results
+
 
 def get_keywords_related_films_average_score(movie_id):
     headers = load_headers_dict()
@@ -96,3 +99,36 @@ def crew_popularity(movie_id):
     for pop, _ in peoples:
         total_pop += pop
     return total_pop
+
+
+def get_latest():
+    headers = load_headers_dict()
+    url = "https://api.themoviedb.org/3/movie/latest?language=en-US"
+    movie_response_dict = requests.get(url, headers=headers)
+    return movie_response_dict
+
+
+def extract_features(movie_id, latest=False):
+    movie_details = get_movie_details(movie_id)
+
+    # As we sort the request by his revenue, we can stop at the first occurence of a film with no revenues.
+    if not latest and movie_details['revenue'] == 0:
+        print('Last film with revenue saved for this request (no need to fetch more pages).')
+        return -1
+
+    # The budget of the film is a super relevant feature, if we do not know the budget, better to ditch out the film
+    if movie_details['budget'] > 0:
+        # Avg similar films revenues
+        movie_details['similar_revenues'] = get_keywords_related_films_average_score(movie_id)
+        # Crew popularity
+        movie_details['crew_popularity'] = crew_popularity(movie_id)
+        # Top10 movie_cast pop
+        cast = get_movie_cast(movie_id=movie_id)
+        popularities = [person['popularity'] for person in cast['cast']]
+        total_popularity = np.sum(np.sort(popularities)[-10:])
+        movie_details['top_cast_popularity'] = total_popularity
+        return movie_details
+    else:
+        print('Budget missing!')
+        return None
+

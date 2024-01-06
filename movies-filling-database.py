@@ -8,8 +8,8 @@ def g():
     nb_pages = 20
     first_page = 0
 
-    lte_release_date = '2020-12-31'
-    gte_release_date = '2020-01-01'
+    lte_release_date = '2015-12-31'
+    gte_release_date = '2015-01-01'
 
     print(f'Fetching {nb_pages} pages beggining at page {first_page}, form {gte_release_date} to {lte_release_date}.')
     print('------')
@@ -19,26 +19,12 @@ def g():
     all_movie_details = []
     for i in range(len(movies_dict)):
         print(f'Extracting features of film {i} ------')
-        movie_id = movies_dict[i]['id']
-        movie_details = utils.get_movie_details(movie_id)
-
-        # As we sort the request by his revenue, we can stop at the first occurence of a film with no revenues.
-        if movie_details['revenue'] == 0:
-            print('Last film with revenue saved for this request (no need to fetch more pages).')
+        movie_id = movies_dict[i]['id'] 
+        movie_details = utils.extract_features(movie_id)
+        if movie_details == -1:
+            # We reached the last movie with revenues
             break
-
-        # The budget of the film is a super relevant feature, if we do not know the budget, better to ditch out the film
-        if movie_details['budget'] > 0:
-            # Avg similar films revenues
-            movie_details['similar_revenues'] = utils.get_keywords_related_films_average_score(movie_id)
-            # Crew popularity
-            movie_details['crew_popularity'] = utils.crew_popularity(movie_id)
-            # Top10 movie_cast pop
-            cast = utils.get_movie_cast(movie_id=movie_id)
-            popularities = [person['popularity'] for person in cast['cast']]
-            total_popularity = np.sum(np.sort(popularities)[-10:])
-            movie_details['top_cast_popularity'] = total_popularity
-            # Add the row
+        elif not (movie_details is None):
             all_movie_details.append(movie_details)
     movies_df = pd.DataFrame(all_movie_details)
 
