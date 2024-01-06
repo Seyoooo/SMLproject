@@ -42,7 +42,7 @@ def g():
             all_movie_details.append(movie_details)
     movies_df = pd.DataFrame(all_movie_details)
 
-    features = ['belongs_to_collection', 'budget', 'genres', 'id', 
+    features = ['budget', 'id', 
               'popularity', 'release_date', 'revenue', 'runtime', 
               'title', 'vote_average', 'vote_count', 'similar_revenues', 
               'crew_popularity', 'top_cast_popularity']
