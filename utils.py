@@ -109,7 +109,10 @@ def crew_popularity(movie_id):
 def get_latest():
     headers = load_headers_dict()
     url = "https://api.themoviedb.org/3/movie/latest?language=en-US"
-    movie_response_dict = requests.get(url, headers=headers)
+    url = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1"
+
+    movie_response_dict = requests.get(url, headers=headers).json()['results'][1]
+    print(movie_response_dict)
     return movie_response_dict
 
 
@@ -137,3 +140,20 @@ def extract_features(movie_id, latest=False):
         print('Budget missing!')
         return None
 
+
+def get_latest_not_infered(df):
+    id = -1
+    headers = load_headers_dict()
+    url = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1"
+    tt_pages = requests.get(url, headers=headers).json()['total_pages']
+    
+    for i in range(1, tt_pages+1):
+        url = f"https://api.themoviedb.org/3/movie/now_playing?language=en-US&page={i}"
+        movies = requests.get(url, headers=headers).json()['results']
+        for m in movies:
+            if not (m['id'] in df['id'].values):
+                features = extract_features(m['id'], latest=True)
+                if not (features is None): 
+                    return features
+    return id
+    
