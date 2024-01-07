@@ -42,7 +42,7 @@ def g():
 
     print(f'Predicted box office score : {y_pred}')
 
-    movie_features['revenue'] = y_pred
+    x['revenue'] = y_pred
     movie_fg.insert(movie_df, write_options={"wait_for_job" : False})
 
 
