@@ -44,8 +44,8 @@ def g():
 
     x['revenue'] = y_pred[0][0]
     x['id'] = movie_df['id']
-    x[['budget']] = int(x[['budget']] * scaling_factor)
-    x[['similar_revenues']] = int(x[['similar_revenues']] * scaling_factor)
+    x[['budget', 'similar_revenues']] *= scaling_factor
+    x[['budget', 'revenue']] = x[['budget', 'revenue']].astype('int')
     print(x)
 
     movie_fg.insert(x, write_options={"wait_for_job" : False})
