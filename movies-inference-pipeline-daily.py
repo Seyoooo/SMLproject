@@ -42,11 +42,11 @@ def g():
 
     print(f'Predicted box office score : {y_pred}')
 
-    x['revenue'] = y_pred.value
+    x['revenue'] = y_pred[0][0]
     x['id'] = movie_df['id']
-    x[['budget', 'similar_revenues']] = int(x[['budget', 'similar_revenues']] * scaling_factor)
+    x[['budget']] = int(x[['budget']] * scaling_factor)
+    x[['similar_revenues']] = int(x[['similar_revenues']] * scaling_factor)
     print(x)
-
 
     movie_fg.insert(x, write_options={"wait_for_job" : False})
 
