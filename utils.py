@@ -144,11 +144,11 @@ def extract_features(movie_id, latest=False):
 def get_latest_not_infered(df):
     id = -1
     headers = load_headers_dict()
-    url = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1"
+    url = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1"
     tt_pages = requests.get(url, headers=headers).json()['total_pages']
     
     for i in range(1, tt_pages+1):
-        url = f"https://api.themoviedb.org/3/movie/now_playing?language=en-US&page={i}"
+        url = f"https://api.themoviedb.org/3/movie/upcoming?language=en-US&page={i}"
         movies = requests.get(url, headers=headers).json()['results']
         for m in movies:
             if not (m['id'] in df['id'].values):
