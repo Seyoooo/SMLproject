@@ -43,6 +43,9 @@ def g():
     print(f'Predicted box office score : {y_pred}')
 
     x['revenue'] = y_pred
+
+    print(x)
+    
     movie_fg.insert(x, write_options={"wait_for_job" : False})
 
 
