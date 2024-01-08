@@ -44,7 +44,7 @@ There are two worksflows linked to Github actions :
 
 * *movies_filling_database.py* was used to fill the offline feature group for training. Indeed scrapping the TMDB API takes time, and compute the features also. So we used Git GPU as nodes to scrap part of the database. The code and workflow is still on the repository but is not running anymore (only once a year..).
 
-* *movies_inference_pipeline_daily.py* use the upcoming TMDB API to fetch the recent movies. It chooses a movie that is not yet in the feature group, predict his revenue and insert the new sample in the feature group. 
+* *movies_inference_pipeline_daily.py* use the upcoming TMDB API to fetch the recent movies. It chooses a movie that is not yet in the feature group, predict his revenue and insert the new sample in the feature group. It runs on a daily basis.
 
 
 ### 2.5 HuggingFace app
