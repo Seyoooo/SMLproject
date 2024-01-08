@@ -25,4 +25,5 @@ jobs:
       - name: execute python workflows from bash script
         env: 
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+          TMDB_API_HEADER: ${{ secrets.TMDB_API_HEADER} }
         run: python ./movies_inference_pipeline_daily.py
