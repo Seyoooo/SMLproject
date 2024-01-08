@@ -33,6 +33,9 @@ TMDB API gives acces to details about the movies (a primary key id, budget of th
 
 ### 2.5 HuggingFace app
 
+![obraz](https://github.com/Seyoooo/SMLproject/assets/36933957/5380d388-6c6a-4a8a-9866-6722bcc220f0)
+
+
 ### 2.6 Improvements
 
 - features : transformer with overview to get context
