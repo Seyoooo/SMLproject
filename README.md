@@ -21,12 +21,16 @@ talk about utils and the gestion of the API keys
 
 ### 2.1. Struture of the project 
 
-At the center of the system is Hopsworks. It receives and store the features created in *movies_feature_pipeline.ipynb*, send them to *movies_training_pipeline.ipynb* and get back a trained model, interact with workflows and with Huggingface. The data are fetched from TMDB API in the feature pipeline. Data for is also fetched in the workflows for daily inference, and in Huggingface for details of movies.
+At the center of the system is Hopsworks. It receives and stores the features created in *movies_feature_pipeline.ipynb*, sends them to *movies_training_pipeline.ipynb* and get back a trained model, interacts with workflows and with Huggingface. The offline dataset is fetched from TMDB API in the feature pipeline. Data is also fetched in the workflows for daily inference, and from Huggingface for details of movies.
 
-This project involves different online services. Hopsworks and TMDB API both need API private keys 
+This project involves different online services. In the code, we need API private keys to access Hopsworks and TMDB API. We added them as secret keys on Github for the workflows, and you will not have access to them on the repository. If you want to run this code, you should either ask us the keys or create your owns. 
+
+For clarity, all functions basic functions and functions for feature extraction and TMDB API interactions are coded in *utils.py*.
 
 ### 2.2 Features selection and pipeline
-c
+
+TMDB API has some interesting pre-computed features : vote_average of the movie on their website and popularity.
+
 ### 2.3 Training pipeline
 
 ### 2.4 Workflows
