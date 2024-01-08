@@ -31,11 +31,15 @@ We tried to identify the best features using feature selection algorithms (Selec
 
 ### 2.3 Training pipeline
 
-The baseline best performance using a KNeighborsRegressor.
-![image](https://github.com/Seyoooo/SMLproject/assets/51091250/448ee678-1fa8-4256-a5be-255594b5f457)
+Our best performance using a K-Neighbours Regressor.
+![image](https://github.com/Seyoooo/SMLproject/assets/51091250/12d5ad84-92c0-4f7b-9d54-1d038e1ba323)
 
-Using our features and a KNeighborsRegressor.
-![image](https://github.com/Seyoooo/SMLproject/assets/51091250/12112ee5-0e5f-44cc-a7d1-3d9356a6bad1)
+Comparison between the predicted and labeled values. 
+![image](https://github.com/Seyoooo/SMLproject/assets/51091250/e51264fc-2cf1-43a2-b9f3-280b4ac65af6)
+
+
+A basic neural network.
+![image](https://github.com/Seyoooo/SMLproject/assets/51091250/4b4a1f2d-df33-4fa9-b470-c845d336d97e)
 
 
 ### 2.4 Workflows
