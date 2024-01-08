@@ -31,6 +31,11 @@ We tried to identify the best features using feature selection algorithms (Selec
 
 ### 2.3 Training pipeline
 
+The baseline best performance using a KNeighborsRegressor.
+![image](https://github.com/Seyoooo/SMLproject/assets/51091250/448ee678-1fa8-4256-a5be-255594b5f457)
+
+Using our features and a KNeighborsRegressor.
+![image](https://github.com/Seyoooo/SMLproject/assets/51091250/12112ee5-0e5f-44cc-a7d1-3d9356a6bad1)
 
 
 ### 2.4 Workflows
@@ -45,4 +50,5 @@ explain fetching issues and time consumption
 - more data?
 - more balanced
 - external issues (covid, avatar etc)
+- time series split
 - Other models?
