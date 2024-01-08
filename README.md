@@ -29,16 +29,25 @@ TMDB API gives acces to details about the movies (a primary key id, budget of th
 
 We tried to identify the best features using feature selection algorithms (SelectKBest and RFE). However, we noticed that many interesting features were not available for recently released movies (popularity, vote average, vote count, etc...) as the film is new! Compiling this with the feature search results, we defined as promising features the set **['budget', 'crew_popularity', 'top_cast_popularity', 'similar_revenues']**. 
 
+We scrapped around 6000 movies from year 2000 to 2023. We only kept the one that had well defined features, especially budget and revenue for training. 
+
 ### 2.3 Training pipeline
 
-Our best performance using a K-Neighbours Regressor.
+After trying different ML models using the pre-selected features, we found that K-Neighbours Regressor is the more fitted for our prediction problem. Iterating over the number of neighbours, we found a minima at k=7.
+
+Our best performance using a K-Neighbours Regressor:
 ![image](https://github.com/Seyoooo/SMLproject/assets/51091250/12d5ad84-92c0-4f7b-9d54-1d038e1ba323)
 
-Comparison between the predicted and labeled values. 
+However, the model is not accurate for out-of-distributation samples. 
+
+Comparison between the predicted and labeled values:
+
 ![image](https://github.com/Seyoooo/SMLproject/assets/51091250/e51264fc-2cf1-43a2-b9f3-280b4ac65af6)
 
+Deep Learning approach did not give good results as the amount of data is not important enough.
 
-A basic neural network.
+A basic neural network:
+
 ![image](https://github.com/Seyoooo/SMLproject/assets/51091250/4b4a1f2d-df33-4fa9-b470-c845d336d97e)
 
 
