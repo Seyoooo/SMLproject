@@ -25,4 +25,4 @@ jobs:
       - name: execute python workflows from bash script
         env: 
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
-        run: python ./movies-inference-pipeline-daily.py
+        run: python ./movies_inference_pipeline_daily.py
