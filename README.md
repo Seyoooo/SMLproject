@@ -51,13 +51,17 @@ There are two worksflows linked to Github actions :
 
 ### 2.6 Improvements
 
-- features : transformer with overview to get context
-- more data?
-- more balanced
-- external issues (covid, avatar etc)
-- time series split
-- Other models?
+This prediction task was hard as the reasons of a success or a failure of a movie depends of many external parameters. For example, the success of the last Avatar is mainly due to the fact that everybody was waiting for the sequel, more than the value of the film itself. However, we have some ideas to enhance the performance of our system:
+* Take into account external changes, like COVID pandemic.
+* Data-centric : use more data, with verified features, and more balanced data on the revenues.
+* Do a Time series split of training / test sets.
+* Use a transformer to encode the Overview of the film add the encoding as a feature to a regression model.
 
 ## 3. How to run the code
 
+First, you need to set up the API keys. Put your API Hopsworks key in a *hopsworks_api_key.txt* file, and the TMDB API key in a *headers.pkl* file (containing the dict with keys accept and Authorization). Put the two files in the root directory.
+
+Then install the requirements using the *requirements.txt* file.
+
+Then you can run seprately both notebooks to fill the training feature group and training a model. You can also run the python files on your local computer.
 
