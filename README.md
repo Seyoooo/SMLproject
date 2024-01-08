@@ -27,7 +27,7 @@ TMDB API gives acces to details about the movies (a primary key id, budget of th
 * *crew_popularity* the sum of key peoples popularity in the movie crew (director, producer, production manager etc...)
 * *top_cast_popularity* the sum of top 10 casting's polularity.
 
-We tried to identify the best features using feature selection algorithms (SelectKBest and RFE). However, we noticed that many interesting features were not available for recently released movies (popularity, vote average, vote count, etc...) as the film is new! Compiling this with the feature search results, we defined as promising features the set **['top_cast_popularity', 'budget', 'crew_popularity', 'similar_revenues']**. 
+We tried to identify the best features using feature selection algorithms (SelectKBest and RFE). However, we noticed that many interesting features were not available for recently released movies (popularity, vote average, vote count, etc...) as the film is new! Compiling this with the feature search results, we defined as promising features the set **['budget', 'crew_popularity', 'top_cast_popularity', 'similar_revenues']**. 
 
 ### 2.3 Training pipeline
 
