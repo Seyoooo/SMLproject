@@ -57,3 +57,7 @@ There are two worksflows linked to Github actions :
 - external issues (covid, avatar etc)
 - time series split
 - Other models?
+
+## 3. How to run the code
+
+
