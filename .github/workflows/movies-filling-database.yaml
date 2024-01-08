@@ -3,7 +3,7 @@ name: movies-filling-database
 on:
   workflow_dispatch:
   schedule:
-    - cron: '11 11 * * *'
+    - cron: '11 11 1 1 1'
 
 jobs:
   test_schedule:
@@ -25,4 +25,5 @@ jobs:
       - name: execute python workflows from bash script
         env: 
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+          TMDB_API_HEADER: ${{ secrets.TMDB_API_HEADER }}
         run: python ./movies_filling_database.py
