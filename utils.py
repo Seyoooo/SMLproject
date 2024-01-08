@@ -2,6 +2,7 @@ import pickle
 import requests
 import json
 import numpy as np
+import os
 
 def get_api_key(): 
     with open('hopsworks_api_key.txt', 'r') as f:
@@ -9,9 +10,19 @@ def get_api_key():
     return key_text
 
 def load_headers_dict():
-    with open('headers.pkl', 'rb') as f:
-        headers_loaded = pickle.load(f)
-    return headers_loaded
+    variable_value = os.getenv('TMDB_API_HEADER')
+    if variable_value is None:
+        try:
+            with open('headers.pkl', 'rb') as f:
+                headers_loaded = pickle.load(f)
+        except:
+            raise KeyError('TMDB header not found')
+        return headers_loaded
+    else:
+        headers_loaded = dict()
+        headers_loaded['accept'] = 'application/json'
+        headers_loaded['Authorization'] = variable_value
+        return headers_loaded
 
 
 def get_movie_details(movie_id): 

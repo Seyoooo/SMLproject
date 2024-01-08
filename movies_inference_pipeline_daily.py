@@ -7,7 +7,7 @@ import joblib
 
 def g():
 
-    project = hopsworks.login(api_key_value=utils.get_api_key())
+    project = hopsworks.login()
     fs = project.get_feature_store()
     movie_fg = fs.get_feature_group(name="movie_predictions", version=1)
     query = movie_fg.select(['id']).read()
