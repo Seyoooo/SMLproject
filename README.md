@@ -62,6 +62,14 @@ There are two worksflows linked to Github actions :
 
 ### 2.5 HuggingFace app
 
+In the app we have two tabs, one with prediction results from the batch inference pipeline 
+![obraz](https://github.com/Seyoooo/SMLproject/assets/36933957/bd69071e-ff5c-4044-8c79-db54b270f24a)
+
+and another one allowing the user to search a movie by title and also get a prediction on it 
+![obraz](https://github.com/Seyoooo/SMLproject/assets/36933957/44a8a1f2-0288-4bfc-8083-d637e6b4c03e)
+
+The app however experiences some troubles with connection to Hopsworks. Sometimes it will not be able to retrieve the results and keeps connecting forever. Without any changes in the code, it might, however work another time.
+
 ### 2.6 Improvements
 
 This prediction task was hard as the reasons of a success or a failure of a movie depends of many external parameters. For example, the success of the last Avatar is mainly due to the fact that everybody was waiting for the sequel, more than the value of the film itself. However, we have some ideas to enhance the performance of our system:
