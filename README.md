@@ -62,6 +62,8 @@ There are two worksflows linked to Github actions :
 
 ### 2.5 HuggingFace app
 
+One can find the user interface app [here](https://huggingface.co/spaces/PiJul/MovieRevenuePrediction).
+
 In the app we have two tabs, one with prediction results from the batch inference pipeline 
 ![obraz](https://github.com/Seyoooo/SMLproject/assets/36933957/bd69071e-ff5c-4044-8c79-db54b270f24a)
 
