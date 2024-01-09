@@ -34,18 +34,20 @@ We scrapped around 6000 movies from year 2000 to 2023. We only kept the one that
 ### 2.3 Training pipeline
 
 After trying different ML models using the pre-selected features, we found that K-Neighbours Regressor is the more fitted for our prediction problem. Iterating over the number of neighbours, we found a minima at k=7.
+We decided to scale budget and similar_revenues features, and revenue label, mainly for metric comprehension. For example, Oppenheimer with a budget of 10.000.000$ and so far a revenue of 952.000.000$ would have scaled features of 10 and 952.
 
 Our best performance using a K-Neighbours Regressor:
 ![image](https://github.com/Seyoooo/SMLproject/assets/51091250/12d5ad84-92c0-4f7b-9d54-1d038e1ba323)
 
-However, the model is not accurate for out-of-distributation samples. 
+Even with scaling, the regression problem still gets important values (cf Oppenheimer example). In the above performance tab, the metric of interest to size the mean gap between predictions and true labels is the MAE : on training data, our model has in average 47.9 millions dollars box office revenue difference with the real value.  
 
-Comparison between the predicted and labeled values:
+However, the model is not accurate for out-of-distributation samples. Here is a comparison between the predicted and labeled values:
 
 ![image](https://github.com/Seyoooo/SMLproject/assets/51091250/e51264fc-2cf1-43a2-b9f3-280b4ac65af6)
 
-Deep Learning approach did not give good results as the amount of data is not important enough.
+In x-axis is the budget, and the revenue associated. Our model do learn the trend but does not take risk when it comes to infer on out-of-distribution data.
 
+Deep Learning approach did not give good results, and is even more conservative. It might be because the dataset is not important enough.
 A basic neural network:
 
 ![image](https://github.com/Seyoooo/SMLproject/assets/51091250/4b4a1f2d-df33-4fa9-b470-c845d336d97e)
